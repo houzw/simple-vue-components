@@ -10,7 +10,7 @@ font-awesome
 ## 使用
 > `vue-tree` 外的`div`及样式 tree、tree-content 非必须
 
-```
+```vue
 <template>
   <div class="tree">
     <!--tree-->
