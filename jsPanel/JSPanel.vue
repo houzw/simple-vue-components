@@ -12,7 +12,7 @@
 
 <script>
 // 自定义指令 jspanel
-import jspanel from "../../directives/jspanel4.js";
+import jspanel from "jspanel4.js";
 
 export default {
   name: "j-panel",
