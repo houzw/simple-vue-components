@@ -21,7 +21,7 @@ or in index.html
 
 ```vue
 <template>
-  <j-panel :options="options">
+  <j-panel :options="panelOptions" :show="show">
    <!--slot-->
   </j-panel>
 </template>
@@ -57,14 +57,7 @@ or in index.html
       ...mapState({
         //if you use vuex
         show: state => state.PanelState.show
-      }),
-      // required
-      options() {
-        return {
-          show: this.show, 
-          panel: this.panelOptions
-        }
-      }
+      })
     }
   }
 </script>
@@ -74,3 +67,8 @@ or in index.html
 </style>
 ```
 
+### update
+
+- 2018-11-14
+
+  add "show" props and remove computed ‘options’, easier to use

@@ -5,54 +5,72 @@
 @email houzw@leris.ac.cn
 -->
 <template>
-    <div v-if="options.show"  v-jspanel="options">
+    <div v-if="show"  v-jspanel="jsPanelOptions">
       <slot></slot>
     </div>
 </template>
 
 <script>
-  // 自定义指令 jspanel
-  import jspanel from 'jspanel4.js'
+// 自定义指令 jspanel
+import jspanel from "../../directives/jspanel4.js";
 
-  export default {
-    name: 'j-panel',
-    data() {
-      return {
-        panelOptions: {
-          contentSize: {
-            width: 300,
-            height: 300
-          }
-        }// 控制显示大小等
+export default {
+  name: "j-panel",
+  data() {
+    return {
+      panelOptions: {
+        contentSize: {
+          width: 300,
+          height: 300
+        }
+      } // 控制显示大小等
+    };
+  },
+  directives: {
+    jspanel
+  },
+  computed:{
+      jsPanelOptions(){
+        return {
+          panel:this.options,
+          show:this.show
+        }
+      }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      // this.panelOptions = Object.assign({}, this.options.panel);
+      this.panelOptions = Object.assign({}, this.options);
+    });
+  },
+  props: {
+    options: {
+      type: Object,
+      required: true,
+      default() {
+        return {
+          // show: false,
+          // jsPanel options
+          // http://jspanel.de/api/#option/overview
+          // panel: {
+            theme: "success",
+            content: "<p>Panel Content here ...</p>"
+          // }
+        };
       }
     },
-    directives: {
-      jspanel
-    },
-    mounted() {
-      this.panelOptions = Object.assign({},this.options.panel);
-    },
-    props: {
-      options: {
-        type: Object,
-        required: true,
-        default () {
-          return {
-            show: false,
-            // jsPanel options
-            // http://jspanel.de/api/#option/overview
-            panel: {
-              theme: 'success',
-              content: "<p>Panel Content here ...</p>",
-            }
-          }
-        }
+    show: {
+      type: Boolean,
+      required: true,
+      default() {
+        return false;
       }
     }
   }
+};
 </script>
 <style lang="scss">
-.jsPanel .jsPanel-content{
+.jsPanel .jsPanel-content {
   font-size: inherit;
   border-top: unset !important;
 }

@@ -24,7 +24,7 @@ const jspanel4 = {
         let defaultOption = {
             headerTitle: 'Panel',
             theme: '#3F51B5',
-            contentSize: { width: '520px', height: '256px' },
+            contentSize: { width: 520, height: 256 },
             show: 'animated fadeInDownBig',
             position: {
                 my: "center", // jsPanel 上的定位点（用于定位jsPanel）
@@ -33,6 +33,7 @@ const jspanel4 = {
             // animateOut: 'animated zoomOutDown',
             content: el,
             onwindowresize: true,
+            // 必须设置 body为 100vh（即整个可视区域的高度） 或大于面板高度，否则拖动时会出现面板消失的问题
             dragit: { containment: 0 }
         };
         // combine options and defaultOption with an object
