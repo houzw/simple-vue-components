@@ -23,7 +23,7 @@ export default {
           width: 300,
           height: 300
         }
-      } // 控制显示大小等
+      }
     };
   },
   directives: {
@@ -39,7 +39,6 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      // this.panelOptions = Object.assign({}, this.options.panel);
       this.panelOptions = Object.assign({}, this.options);
     });
   },
@@ -49,13 +48,8 @@ export default {
       required: true,
       default() {
         return {
-          // show: false,
-          // jsPanel options
-          // http://jspanel.de/api/#option/overview
-          // panel: {
             theme: "success",
             content: "<p>Panel Content here ...</p>"
-          // }
         };
       }
     },
