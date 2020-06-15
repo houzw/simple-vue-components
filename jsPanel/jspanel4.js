@@ -44,12 +44,15 @@ const jspanel4 = {
 
     },
     update(el, binding, vnode, oldVnode) {
-        // to ignore unncessary panel update
-       // vnode.panel = oldVnode.panel;
+       // to ignore unncessary panel update
+       vnode.panel = oldVnode.panel;
     },
     unbind(el, binding, vnode) {
-    	//seems unnecessary and exists a warning: vnode.panel.parentElement is null. It is not null in update hook
-        //vnode.panel.close();
+        // avoid Error in directive jspanel unbind hook: "TypeError: a.parentElement is null"
+      if (vnode.panel.parentElement !== null) {
+        vnode.panel.close();
+       }
+        vnode.panel = null;
     }
 }
 export default jspanel4;
